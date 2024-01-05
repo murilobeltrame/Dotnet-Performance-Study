@@ -1,0 +1,6 @@
+@Todo8_HostAddress = http://localhost:5009
+
+GET {{Todo8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
