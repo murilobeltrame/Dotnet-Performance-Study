@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo8
+  name: todo8
+  namespace: todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo8
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: todo8
+    spec:
+      containers:
+      - image: murilobeltrame/todo:net-8
+        name: todo
+        resources: {}
+status: {}

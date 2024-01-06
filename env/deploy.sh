@@ -12,6 +12,11 @@ else
     nodePoolNameArm='armpool'
     nodepoolSizeArm='Standard_D2ps_v5' # Ampere Altra, 8GiB RAM
 
+    sqlServerName="sql$1"
+    sqlServerDataBaseName6="Todo6"
+    sqlServerDataBaseName7="Todo7"
+    sqlServerDataBaseName8="Todo8"
+
     # CREATE RG
     az group create --name $1 --location $location
 
@@ -36,4 +41,39 @@ else
     # UPDATE .kubeconfig
     az aks get-credentials --resource-group $1 --name $aksClusterName
 
+    # CREATE DB SERVER
+    az sql server create \
+        --resource-group $1 \
+        --name $sqlServerName \
+        --admin-user $SQL_ADMIN_USR \
+        --admin-password $SQL_ADMIN_PWD \
+        --location $location
+
+    # CREATE DATABASES
+    az sql db create \
+        --resource-group $1 \
+        --server $sqlServerName \
+        --name $sqlServerDataBaseName6 \
+        --edition Hyperscale \
+        --compute-model Serverless \
+        --family Gen5 \
+        --capacity 2
+
+    az sql db create \
+        --resource-group $1 \
+        --server $sqlServerName \
+        --name $sqlServerDataBaseName7 \
+        --edition Hyperscale \
+        --compute-model Serverless \
+        --family Gen5 \
+        --capacity 2
+
+    az sql db create \
+        --resource-group $1 \
+        --server $sqlServerName \
+        --name $sqlServerDataBaseName8 \
+        --edition Hyperscale \
+        --compute-model Serverless \
+        --family Gen5 \
+        --capacity 2
 fi
