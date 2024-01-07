@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo6
+  name: todo6
+  namespace: todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo6
+  template:
+    metadata:
+      labels:
+        app: todo6
+    spec:
+      containers:
+      - image: murilobeltrame/todo:net-6
+        name: todo
+        ports:
+          - containerPort: 80
+        resources: 
+          requests:
+            memory: 64Mi
+            cpu: 250m
+          limits:
+            memory: 128Mi
+            cpu: 500m
+        env:
+          - name: ConnectionStrings__DbConnection
+            valueFrom:
+              secretKeyRef:
+                key: ConnectionStrings__DbConnection
+                name: todo6-secrets
+status: {}

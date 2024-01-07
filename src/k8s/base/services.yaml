@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todo6
+  name: todo6-service
+  namespace: todos
+spec:
+  selector:
+    app: todo6
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todo7
+  name: todo7-service
+  namespace: todos
+spec:
+  selector:
+    app: todo7
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todo8
+  name: todo8-service
+  namespace: todos
+spec:
+  selector:
+    app: todo8
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80

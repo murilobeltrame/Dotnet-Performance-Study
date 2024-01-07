@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo7
+  name: todo7
+  namespace: todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo7
+  template:
+    metadata:
+      labels:
+        app: todo7
+    spec:
+      containers:
+      - image: murilobeltrame/todo:net-7
+        name: todo
+        ports:
+          - containerPort: 80
+        resources: 
+          requests:
+            memory: 64Mi
+            cpu: 250m
+          limits:
+            memory: 128Mi
+            cpu: 500m
+        env:
+          - name: ConnectionStrings__DbConnection
+            valueFrom:
+              secretKeyRef:
+                key: ConnectionStrings__DbConnection
+                name: todo7-secrets
+status: {}

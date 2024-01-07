@@ -20,11 +20,19 @@ else
     # CREATE RG
     az group create --name $1 --location $location
 
+    ## CREATE A KV
+    az keyvault create \
+        -n "kv$1" \
+        -g $1 \
+        -l $location \
+        --enable-rbac-authorization
+
     # CREATE AKS CLUSTER
     az aks create \
         --resource-group $1 \
         --name $aksClusterName \
         --location $location \
+        --enable-addons azure-keyvault-secrets-provider \
         --generate-ssh-keys \
         --kubernetes-version $kubernetesVersion \
         --nodepool-name $nodePoolNameArm \

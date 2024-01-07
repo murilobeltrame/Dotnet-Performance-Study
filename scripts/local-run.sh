@@ -1,0 +1,1 @@
+docker run -p 8888:8080 -e ConnectionStrings__DbConnection="Server=host.docker.internal;Database=Todo6;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;" todo:net-8 

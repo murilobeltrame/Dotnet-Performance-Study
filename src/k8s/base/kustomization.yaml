@@ -1,0 +1,6 @@
+resources:
+  - namespace.yaml
+  - deployment-todo6.yaml
+  - deployment-todo7.yaml
+  - deployment-todo8.yaml
+  - services.yaml
